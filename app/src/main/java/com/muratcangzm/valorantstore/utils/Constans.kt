@@ -4,6 +4,7 @@ object Constans {
 
     const val BASE_URL = "https://valorant-api.com/v1/"
     const val EVENTS_DAY = "events"
+    const val WEAPONRY = "weapons"
 
 
 }

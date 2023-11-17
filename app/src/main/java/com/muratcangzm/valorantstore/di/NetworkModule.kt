@@ -1,5 +1,6 @@
 package com.muratcangzm.valorantstore.di
 
+import android.os.Build.VERSION_CODES.BASE
 import com.muratcangzm.valorantstore.service.ValorantAPI
 import com.muratcangzm.valorantstore.utils.Constans.BASE_URL
 import dagger.Module
@@ -17,7 +18,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideEvents(): ValorantAPI {
+    fun provideAPI(): ValorantAPI {
 
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -26,6 +27,8 @@ object NetworkModule {
             .create(ValorantAPI::class.java)
 
     }
+
+
 
 
 }
