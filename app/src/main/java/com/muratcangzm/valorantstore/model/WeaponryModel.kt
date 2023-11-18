@@ -74,7 +74,31 @@ data class WeaponryModel(
                 @SerializedName("assetPath")
                 @Expose
                 val assetPath: String?,
-            ) {}
+                @SerializedName("chromas")
+                @Expose
+                val chromas: List<Chromas>?,
+            ) {
+
+
+                data class Chromas(
+                    @SerializedName("displayName")
+                    @Expose
+                    val displayName: String?,
+                    @SerializedName("displayIcon")
+                    @Expose
+                    val displayIcon: String?,
+                    @SerializedName("fullRender")
+                    @Expose
+                    val fullRender: String?,
+                    @SerializedName("swatch")
+                    @Expose
+                    val swatch: String?,
+                    @SerializedName("streamedVideo")
+                    @Expose
+                    val streamedVideo: String?,
+                ){}
+
+            }
 
         }
 
