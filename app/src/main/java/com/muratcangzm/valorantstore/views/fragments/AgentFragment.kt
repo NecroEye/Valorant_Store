@@ -7,27 +7,25 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
-import com.muratcangzm.valorantstore.databinding.HomeFragmentLayoutBinding
+import com.muratcangzm.valorantstore.databinding.AgentFragmentLayoutBinding
 import com.muratcangzm.valorantstore.utils.NetworkUtils
 import com.muratcangzm.valorantstore.viewmodels.DataViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class AgentFragment : Fragment() {
 
+    private lateinit var binding: AgentFragmentLayoutBinding
     private val viewModel: DataViewModel by viewModels()
-    private lateinit var binding: HomeFragmentLayoutBinding
-
-
-    //TODO agent fragmenti ve navigation graph'ın düzeltilmesi sonrasında room eklenmesi ardından bottom navigationa geçiş birde details fragmentler
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = HomeFragmentLayoutBinding.inflate(layoutInflater, container, false)
+
+        binding = AgentFragmentLayoutBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -36,12 +34,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         if (NetworkUtils.isNetworkAvailable(requireContext())) {
 
-            viewModel.getEvents.observe(viewLifecycleOwner) {
-                Timber.tag("Events").d("onCreate: ${it.status}")
-            }
+            viewModel.getAgent.observe(viewLifecycleOwner) {
+                Timber.tag("Agent").d("onCreate: ${it.status}")
 
+            }
 
         } else {
             Snackbar

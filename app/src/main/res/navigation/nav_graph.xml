@@ -9,5 +9,36 @@
         android:id="@+id/homeFragment"
         android:name="com.muratcangzm.valorantstore.views.fragments.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/home_fragment_layout"/>
+        tools:layout="@layout/home_fragment_layout">
+        <action
+            android:id="@+id/agent"
+            app:destination="@id/agentFragment" />
+        <action
+            android:id="@+id/weaponry"
+            app:destination="@id/weaponryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/agentFragment"
+        android:name="com.muratcangzm.valorantstore.views.fragments.AgentFragment"
+        android:label="AgentFragment"
+        tools:layout="@layout/agent_fragment_layout">
+        <action
+            android:id="@+id/weaponry"
+            app:destination="@id/weaponryFragment" />
+        <action
+            android:id="@+id/date"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weaponryFragment"
+        android:name="com.muratcangzm.valorantstore.views.fragments.WeaponryFragment"
+        android:label="WeaponryFragment"
+        tools:layout="@layout/weaponry_fragment_layout">
+        <action
+            android:id="@+id/date"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/agent"
+            app:destination="@id/agentFragment" />
+    </fragment>
 </navigation>
