@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         NavigationUI.setupWithNavController(binding.bottomNavigation, navHostFragment.navController)
 
-        // FIXME: Bottom Navigation indicator
+
 
 
    

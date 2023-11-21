@@ -1,9 +1,9 @@
 package com.muratcangzm.valorantstore.service
 
-import com.muratcangzm.valorantstore.model.AgentModel
-import com.muratcangzm.valorantstore.model.CurrencyModel
-import com.muratcangzm.valorantstore.model.EventsModel
-import com.muratcangzm.valorantstore.model.WeaponryModel
+import com.muratcangzm.valorantstore.model.remote.AgentModel
+import com.muratcangzm.valorantstore.model.remote.CurrencyModel
+import com.muratcangzm.valorantstore.model.remote.EventsModel
+import com.muratcangzm.valorantstore.model.remote.WeaponryModel
 import com.muratcangzm.valorantstore.utils.Constans.AGENTS
 import com.muratcangzm.valorantstore.utils.Constans.CURRENCY
 import com.muratcangzm.valorantstore.utils.Constans.EVENTS_DAY

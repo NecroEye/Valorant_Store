@@ -1,4 +1,4 @@
-package com.muratcangzm.valorantstore.model
+package com.muratcangzm.valorantstore.model.remote
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

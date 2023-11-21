@@ -16,7 +16,7 @@ android {
         //noinspection EditedTargetSdkVersion
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.12941234275"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -63,6 +63,8 @@ dependencies {
     val nav_version = "2.7.5"
     val lifecycle_version = "2.6.2"
     val arch_version = "2.2.0"
+    val room_version = "2.6.0"
+
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -100,8 +102,13 @@ dependencies {
     //Timber - Logger
     implementation("com.jakewharton.timber:timber:5.0.1")
 
+    //Room
+    implementation ("androidx.room:room-runtime:$room_version")
+    kapt ("androidx.room:room-compiler:$room_version")
+
 
     //Testing
+    implementation("com.google.truth:truth:1.1.4")
     androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
     testImplementation("androidx.lifecycle:lifecycle-runtime-testing:$lifecycle_version")
     testImplementation("androidx.arch.core:core-testing:$arch_version")
