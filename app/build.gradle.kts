@@ -56,10 +56,13 @@ android {
         viewBinding = true
     }
 
+    namespace = "com.muratcangzm.valorantstore"
+
 }
 
 dependencies {
 
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     val nav_version = "2.7.5"
     val lifecycle_version = "2.6.2"
     val arch_version = "2.2.0"
@@ -70,10 +73,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation ("androidx.activity:activity-ktx:1.8.0")
+    implementation ("androidx.activity:activity-ktx:1.8.1")
 
 
     //UI
@@ -109,9 +109,25 @@ dependencies {
 
     //Testing
     implementation("com.google.truth:truth:1.1.4")
-    androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+    testImplementation("org.mockito:mockito-core:4.7.0")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.hamcrest:hamcrest-all:1.3")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("org.robolectric:robolectric:4.8.1")
     testImplementation("androidx.lifecycle:lifecycle-runtime-testing:$lifecycle_version")
     testImplementation("androidx.arch.core:core-testing:$arch_version")
+
+    //Android Testing
+    androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+    androidTestImplementation("org.mockito:mockito-android:4.7.0")
+    androidTestImplementation("org.mockito:mockito-core:4.7.0")
+    androidTestImplementation("com.google.truth:truth:1.1.4")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.arch.core:core-testing:2.2.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")
+
+
 }
 
 kapt {
