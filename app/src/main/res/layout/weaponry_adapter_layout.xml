@@ -27,6 +27,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/weaponImage"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
@@ -53,11 +54,21 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_alignParentEnd="true"
-                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:src="@color/black" />
 
         </RelativeLayout>
+       
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:backgroundTint="@color/black"
+            android:background="@color/black"/>
 
+        
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/weaponryName"
             android:layout_width="match_parent"

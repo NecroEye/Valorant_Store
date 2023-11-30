@@ -56,17 +56,15 @@ android {
         viewBinding = true
     }
 
-    namespace = "com.muratcangzm.valorantstore"
-
 }
 
 dependencies {
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     val nav_version = "2.7.5"
     val lifecycle_version = "2.6.2"
     val arch_version = "2.2.0"
-    val room_version = "2.6.0"
+    val room_version = "2.6.1"
+    val lottieVersion = "3.4.0"
 
 
     implementation("androidx.core:core-ktx:1.12.0")
@@ -78,6 +76,7 @@ dependencies {
 
     //UI
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.airbnb.android:lottie:$lottieVersion")
 
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -111,6 +110,7 @@ dependencies {
     implementation("com.google.truth:truth:1.1.4")
     testImplementation("org.mockito:mockito-core:4.7.0")
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     testImplementation("org.hamcrest:hamcrest-all:1.3")
     testImplementation("androidx.arch.core:core-testing:2.2.0")
     testImplementation("org.robolectric:robolectric:4.8.1")

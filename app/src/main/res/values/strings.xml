@@ -3,4 +3,6 @@
     <string name="weapon_image" translatable="false">Silah Resmi</string>
     <string name="empty">Boş</string>
     <string name="price">Fiyat</string>
+    <string name="loading_screen">Yükleme Ekranı</string>
+    <string name="loading_text">Yükleniyor...</string>
 </resources>
