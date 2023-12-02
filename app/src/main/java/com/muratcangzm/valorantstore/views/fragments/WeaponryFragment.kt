@@ -25,6 +25,7 @@ class WeaponryFragment : Fragment() {
     private lateinit var weaponryModel: WeaponryModel
     private lateinit var currencyModel: CurrencyModel
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,33 +40,13 @@ class WeaponryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        if (NetworkUtils.isNetworkAvailable(requireContext())) {
-
-            viewModel.getWeaponry.observe(viewLifecycleOwner) {
-
-                weaponryModel = it
-
-                Timber.tag("Weaponry").d("onCreate: ${it.status}")
-
-            }
-            viewModel.getCurrency.observe(viewLifecycleOwner) {
-
-                currencyModel = it
-
-                Timber.tag("Currency").d("onCreate: ${it.status}")
-
-            }
+        viewModel.allModelLiveData.observe(viewLifecycleOwner){
 
 
-        } else {
-            Snackbar
-                .make(
-                    view,
-                    "İnternet Bağlantınız Yok",
-                    Snackbar.LENGTH_SHORT
-                )
-                .show()
+            weaponryModel = it[1] as WeaponryModel
+            currencyModel = it[2] as CurrencyModel
+
+
         }
 
 

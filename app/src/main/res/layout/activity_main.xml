@@ -7,6 +7,12 @@
     tools:context=".views.MainActivity">
 
 
+
+    <include
+        android:id="@+id/loading_screen"
+        layout="@layout/loading_screen_layout"
+        android:visibility="visible"/>
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -14,6 +20,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:visibility="gone"
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
 
@@ -30,6 +37,7 @@
         android:background="@drawable/bottom_background"
         android:elevation="6dp"
         app:menu="@menu/bottom_bar_menu"
+        android:visibility="gone"
         app:itemIconSize="32dp"
         app:itemIconTint="@drawable/item_selector"
         app:itemRippleColor="@android:color/transparent"

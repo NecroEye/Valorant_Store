@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:text="Events Fragment"
         android:gravity="center"
+        android:id="@+id/testText"
         android:layout_gravity="center"
         android:layout_marginTop="300dp"
         android:textColor="@color/black"

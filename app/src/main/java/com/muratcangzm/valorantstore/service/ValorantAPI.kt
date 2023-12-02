@@ -8,7 +8,6 @@ import com.muratcangzm.valorantstore.utils.Constans.AGENTS
 import com.muratcangzm.valorantstore.utils.Constans.CURRENCY
 import com.muratcangzm.valorantstore.utils.Constans.EVENTS_DAY
 import com.muratcangzm.valorantstore.utils.Constans.WEAPONRY
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -16,34 +15,34 @@ interface ValorantAPI {
 
 
     @GET(EVENTS_DAY)
-    fun getEvents(
+   suspend fun getEvents(
         @Query("language")
         language: String = "tr-TR"
     )
-            : Call<EventsModel>
+            : EventsModel
 
     @GET(WEAPONRY)
-    fun getWeaponry(
+   suspend fun getWeaponry(
         @Query("language")
         language: String = "tr-TR"
     )
-            : Call<WeaponryModel>
+            : WeaponryModel
 
     @GET(CURRENCY)
-    fun getCurrency(
+   suspend fun getCurrency(
         @Query("language")
         language: String = "tr-TR"
     )
-            : Call<CurrencyModel>
+            : CurrencyModel
 
 
     @GET(AGENTS)
-    fun getAgent(
+   suspend fun getAgent(
         @Query("language")
         language: String = "tr-TR",
         @Query("isPlayableCharacter")
         isPlayableCharacter: Boolean = true
     )
-            : Call<AgentModel>
+            : AgentModel
 
 }
