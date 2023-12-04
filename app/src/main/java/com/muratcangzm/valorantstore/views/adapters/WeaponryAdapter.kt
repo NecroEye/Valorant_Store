@@ -34,7 +34,7 @@ constructor(
     }
 
     override fun getItemCount(): Int {
-        return weaponryModel.weaponry!!.size
+        return weaponryModel.weaponry?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: WeaponHolder, position: Int) {
@@ -47,7 +47,7 @@ constructor(
 
         
         weaponName.text = weaponryModel.weaponry?.get(position)?.displayName
-        weaponPrice.text = weaponryModel.weaponry?.get(position)?.shopData!!.cost.toString()
+        weaponPrice.text = weaponryModel.weaponry?.get(position)?.shopData?.cost.toString()
 
 
 

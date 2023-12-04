@@ -40,12 +40,10 @@ class HomeFragment : Fragment() {
 
         viewModel.allModelLiveData.observe(viewLifecycleOwner){
 
-            if(NetworkUtils.isInternetAvailable(requireContext())){
+            eventsModel = it[0] as EventsModel
 
-                eventsModel = it[0] as EventsModel
+            binding.testText.text = eventsModel.eventData?.get(0)?.displayName.toString()
 
-                binding.testText.text = eventsModel.eventData?.get(0)?.displayName.toString()
-            }
         }
 
 

@@ -2,6 +2,7 @@ package com.muratcangzm.valorantstore.repository
 
 
 import com.muratcangzm.valorantstore.service.ValorantAPI
+import com.muratcangzm.valorantstore.utils.NetworkUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -14,6 +15,7 @@ class DataRepository
 constructor(val api: ValorantAPI) {
 
     suspend fun fetchDataConcurrently(): List<Any> = withContext(Dispatchers.IO) {
+
 
         try {
 
