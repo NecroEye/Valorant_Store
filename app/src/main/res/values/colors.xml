@@ -6,4 +6,7 @@
     <color name="grey">#2d2d2d</color>
     <color name="light_grey">#a7afad</color>
     <color name="charcoal">#36454F</color>
+    <color name="beige_yellow">#ffc566</color>
+    <color name="dark_blue">#350CB6</color>
+    <color name="bright_green">#7CFC00</color>
 </resources>

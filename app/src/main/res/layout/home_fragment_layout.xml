@@ -7,7 +7,7 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Events Fragment"
+        android:text="Weaponry Fragmnet"
         android:gravity="center"
         android:id="@+id/testText"
         android:layout_gravity="center"

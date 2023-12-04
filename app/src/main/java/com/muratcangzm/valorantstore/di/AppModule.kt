@@ -2,8 +2,12 @@ package com.muratcangzm.valorantstore.di
 
 import android.content.Context
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.RequestOptions
 import com.muratcangzm.valorantstore.R
+import com.muratcangzm.valorantstore.model.remote.CurrencyModel
+import com.muratcangzm.valorantstore.model.remote.WeaponryModel
+import com.muratcangzm.valorantstore.views.adapters.WeaponryAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
