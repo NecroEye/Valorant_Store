@@ -6,5 +6,10 @@
     </style>
 
 
+    <style name="CircularImageViewStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
     <style name="Theme.ValorantStore" parent="Base.Theme.ValorantStore" />
 </resources>
