@@ -42,6 +42,19 @@ class MainActivity : AppCompatActivity() {
 
         NavigationUI.setupWithNavController(binding.bottomNavigation, navHostFragment.navController)
 
+
+        navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.weaponryDetailFragment || destination.id == R.id.agentDetailFragment ) {
+
+                binding.bottomNavigation.visibility = View.GONE
+
+            }else{
+
+                binding.bottomNavigation.visibility = View.VISIBLE
+
+            }
+        }
+
         if (NetworkUtils.isInternetAvailable(this)) {
 
             viewModel.allModelLiveData.observe(this, Observer {

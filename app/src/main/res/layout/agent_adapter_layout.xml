@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/agentCardView"
+    android:layout_width="170dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    app:rippleColor="@color/lavender">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/agentSmallIcon"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@color/black"
+            android:scaleType="fitCenter" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/agentNameText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:lines="3"
+            android:ellipsize="end"
+            android:text="@string/empty"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="21sp"
+            tools:ignore="RtlSymmetry" />
+
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

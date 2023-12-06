@@ -13,6 +13,7 @@ import com.muratcangzm.valorantstore.model.remote.AgentModel
 import com.muratcangzm.valorantstore.model.remote.WeaponryModel
 import com.muratcangzm.valorantstore.utils.NetworkUtils
 import com.muratcangzm.valorantstore.viewmodels.DataViewModel
+import com.muratcangzm.valorantstore.views.adapters.AgentAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -41,6 +42,8 @@ class AgentFragment : Fragment() {
         viewModel.allModelLiveData.observe(viewLifecycleOwner) {
 
             agentModel = it[3] as AgentModel
+
+            binding.agentRecycler.adapter = AgentAdapter(requireContext(), agentModel)
 
 
         }

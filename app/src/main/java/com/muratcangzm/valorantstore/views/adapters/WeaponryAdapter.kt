@@ -3,21 +3,21 @@ package com.muratcangzm.valorantstore.views.adapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
+import com.muratcangzm.valorantstore.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestManager
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textview.MaterialTextView
-import com.muratcangzm.valorantstore.R
 import com.muratcangzm.valorantstore.model.remote.CurrencyModel
 import com.muratcangzm.valorantstore.model.remote.WeaponryModel
+import com.muratcangzm.valorantstore.views.fragments.WeaponryFragmentDirections
 import timber.log.Timber
 
 
@@ -43,6 +43,7 @@ constructor(
 
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: WeaponHolder, position: Int) {
+
 
         val weaponImage: ImageView = holder.itemView.findViewById(R.id.weaponImage)
         val weaponName: MaterialTextView = holder.itemView.findViewById(R.id.weaponryName)
@@ -74,6 +75,14 @@ constructor(
 
 
         weaponCardView.setOnClickListener {
+
+
+            val action = WeaponryFragmentDirections.actionWeaponryFragmentToWeaponryDetailFragment(
+                weaponryModel.weaponry!![position]
+            )
+
+            Navigation.findNavController(it).navigate(action)
+
 
             Snackbar
                 .make(

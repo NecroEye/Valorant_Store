@@ -1,5 +1,7 @@
 package com.muratcangzm.valorantstore.model.remote
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -11,6 +13,8 @@ data class WeaponryModel(
     @Expose
     val weaponry: List<WeaponryData>?,
 ) {
+
+
 
     data class WeaponryData(
         @SerializedName("displayName")
@@ -29,8 +33,16 @@ data class WeaponryModel(
         @Expose
         val shopData: ShopData?,
 
-        ) {
+        ) : Parcelable {
 
+
+        constructor(parcel: Parcel) : this(
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            TODO("shopData")
+        )
 
         data class ShopData(
             @SerializedName("cost")
@@ -96,10 +108,31 @@ data class WeaponryModel(
                     @SerializedName("streamedVideo")
                     @Expose
                     val streamedVideo: String?,
-                ){}
+                )
 
             }
 
+        }
+
+        override fun writeToParcel(parcel: Parcel, flags: Int) {
+            parcel.writeString(displayName)
+            parcel.writeString(category)
+            parcel.writeString(displayIcon)
+            parcel.writeString(assetPath)
+        }
+
+        override fun describeContents(): Int {
+            return 0
+        }
+
+        companion object CREATOR : Parcelable.Creator<WeaponryData> {
+            override fun createFromParcel(parcel: Parcel): WeaponryData {
+                return WeaponryData(parcel)
+            }
+
+            override fun newArray(size: Int): Array<WeaponryData?> {
+                return arrayOfNulls(size)
+            }
         }
 
 

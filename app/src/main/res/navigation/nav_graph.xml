@@ -9,36 +9,48 @@
         android:id="@+id/homeFragment"
         android:name="com.muratcangzm.valorantstore.views.fragments.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/home_fragment_layout">
-        <action
-            android:id="@+id/agent"
-            app:destination="@id/agentFragment" />
-        <action
-            android:id="@+id/weaponry"
-            app:destination="@id/weaponryFragment" />
-    </fragment>
+        tools:layout="@layout/home_fragment_layout"/>
     <fragment
         android:id="@+id/agentFragment"
         android:name="com.muratcangzm.valorantstore.views.fragments.AgentFragment"
         android:label="AgentFragment"
         tools:layout="@layout/agent_fragment_layout">
         <action
-            android:id="@+id/weaponry"
-            app:destination="@id/weaponryFragment" />
-        <action
-            android:id="@+id/date"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_agentFragment_to_agentDetailFragment"
+            app:destination="@id/agentDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/weaponryFragment"
         android:name="com.muratcangzm.valorantstore.views.fragments.WeaponryFragment"
         android:label="WeaponryFragment"
         tools:layout="@layout/weaponry_fragment_layout">
+        <argument
+            android:name="weaponryData"
+            app:argType="com.muratcangzm.valorantstore.model.remote.WeaponryModel$WeaponryData" />
         <action
-            android:id="@+id/date"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/agent"
-            app:destination="@id/agentFragment" />
+            android:id="@+id/action_weaponryFragment_to_weaponryDetailFragment"
+            app:destination="@id/weaponryDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/agentDetailFragment"
+        android:name="com.muratcangzm.valorantstore.views.fragments.AgentDetailFragment"
+        android:label="AgentDetailFragment"
+        tools:layout="@layout/agent_detail_fragment_layout">
+        <argument
+            android:name="agentData"
+            app:argType="com.muratcangzm.valorantstore.model.remote.AgentModel$AgentData" />
+    </fragment>
+    <fragment
+        android:id="@+id/weaponryDetailFragment"
+        android:name="com.muratcangzm.valorantstore.views.fragments.WeaponryDetailFragment"
+        android:label="WeaponryDetailFragment"
+        tools:layout="@layout/agent_detail_fragment_layout">
+        <argument
+            android:name="weaponData"
+            app:argType="com.muratcangzm.valorantstore.model.remote.WeaponryModel$WeaponryData" />
     </fragment>
 </navigation>
