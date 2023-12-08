@@ -46,6 +46,7 @@ class AgentFragment : Fragment() {
             binding.agentRecycler.adapter = AgentAdapter(requireContext(), agentModel)
 
 
+
         }
 
 

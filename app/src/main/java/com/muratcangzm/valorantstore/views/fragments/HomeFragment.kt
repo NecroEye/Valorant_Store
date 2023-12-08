@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.muratcangzm.valorantstore.databinding.HomeFragmentLayoutBinding
 import com.muratcangzm.valorantstore.model.remote.EventsModel
@@ -20,9 +21,6 @@ class HomeFragment : Fragment() {
     private lateinit var binding: HomeFragmentLayoutBinding
     private val viewModel: DataViewModel by viewModels()
     private lateinit var eventsModel: EventsModel
-
-
-    //TODO agent fragmenti ve navigation graph'ın düzeltilmesi sonrasında room eklenmesi ardından bottom navigationa geçiş birde details fragmentler
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,7 +40,13 @@ class HomeFragment : Fragment() {
 
             eventsModel = it[0] as EventsModel
 
-            binding.testText.text = eventsModel.eventData?.get(0)?.displayName.toString()
+            for (event in eventsModel.eventData!!){
+
+
+
+
+            }
+
 
         }
 
