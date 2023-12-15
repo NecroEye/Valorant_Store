@@ -7,6 +7,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
+import timber.log.Timber
+import java.net.UnknownHostException
 
 import javax.inject.Inject
 
@@ -28,8 +30,15 @@ constructor(val api: ValorantAPI) {
 
 
             return@withContext results
-        } catch (e: Exception) {
+        }catch (e: UnknownHostException){
+            Timber.e(e, "UnknownHostException: No internet connection")
 
+            return@withContext emptyList<Any>()
+        }
+
+        catch (e: Exception) {
+
+            Timber.e(e, "Error fetching data from API")
             return@withContext emptyList<Any>()
         }
 

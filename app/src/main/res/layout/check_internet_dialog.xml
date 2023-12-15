@@ -32,7 +32,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="140dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:id="@+id/tryConnect"
         app:cornerRadius="10dp"
         app:rippleColor="@color/white"

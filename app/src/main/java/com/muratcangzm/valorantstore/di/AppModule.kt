@@ -1,5 +1,6 @@
 package com.muratcangzm.valorantstore.di
 
+import android.app.Application
 import android.content.Context
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
@@ -18,6 +19,13 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+
+    @Provides
+    @Singleton
+    fun provideApplicationContext(application: Application): Context {
+        return application.applicationContext
+    }
 
 
     @Singleton

@@ -42,6 +42,8 @@ class MainActivity : AppCompatActivity() {
 
         NavigationUI.setupWithNavController(binding.bottomNavigation, navHostFragment.navController)
 
+        binding.bottomNavigation.visibility = View.GONE
+
 
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.weaponryDetailFragment || destination.id == R.id.agentDetailFragment ) {
@@ -59,15 +61,27 @@ class MainActivity : AppCompatActivity() {
 
             viewModel.allModelLiveData.observe(this, Observer {
 
+                if(it.isNotEmpty()){
 
-                Timber.tag("Vericik").d("${it[0]}")
+                    Timber.tag("Vericik").d("${it[0]}")
+                    binding.loadingScreen.loadingScreenLayout.visibility = View.GONE
+                    binding.bottomNavigation.visibility = View.VISIBLE
+                    binding.fragmentContainerView.visibility = View.VISIBLE
 
-                binding.bottomNavigation.visibility = View.VISIBLE
-                binding.fragmentContainerView.visibility = View.VISIBLE
-                binding.loadingScreen.loadingScreenLayout.visibility = View.GONE
+                }
+                else{
 
+                    binding.fragmentContainerView.visibility = View.GONE
+
+                }
 
             })
+        }
+        else{
+
+            binding.bottomNavigation.visibility = View.GONE
+            binding.loadingScreen.loadingScreenLayout.visibility = View.VISIBLE
+
         }
 
     }

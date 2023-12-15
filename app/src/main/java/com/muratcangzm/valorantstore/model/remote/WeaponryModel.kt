@@ -11,7 +11,7 @@ data class WeaponryModel(
     val status: Int?,
     @SerializedName("data")
     @Expose
-    val weaponry: List<WeaponryData>?,
+    var weaponry: List<WeaponryData>?,
 ) {
 
 
