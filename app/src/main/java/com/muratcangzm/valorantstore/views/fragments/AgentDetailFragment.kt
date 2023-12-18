@@ -38,6 +38,7 @@ class AgentDetailFragment : Fragment() {
 
         val agentImage = Uri.parse(receivedData?.fullPortrait)
         val background = Uri.parse(receivedData?.background)
+        val roleIcon = Uri.parse(receivedData?.role?.displayIcon)
 
         Glide.with(binding.root)
             .load(agentImage)
@@ -46,8 +47,18 @@ class AgentDetailFragment : Fragment() {
             .into(binding.characterImage)
 
 
+        Glide.with(binding.root)
+            .load(roleIcon)
+            .error(R.drawable.not_found)
+            .placeholder(R.drawable.not_found)
+            .into(binding.roleIcon)
+
 
                 binding.role.text = receivedData?.role?.displayName ?: "Boş"
+
+
+
+        binding.expandTextView.text = receivedData?.description
 
 
     }

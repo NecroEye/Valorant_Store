@@ -22,9 +22,12 @@ object NetworkModule {
     @Singleton
     fun provideAPI(): ValorantAPI {
 
-        val client: OkHttpClient = OkHttpClient.Builder()
-            .addInterceptor(NetworkInterceptor())
-            .build()
+        val client: OkHttpClient by lazy {
+
+            OkHttpClient.Builder()
+                .addInterceptor(NetworkInterceptor())
+                .build()
+        }
 
         return Retrofit.Builder()
             .baseUrl(BASE_URL)

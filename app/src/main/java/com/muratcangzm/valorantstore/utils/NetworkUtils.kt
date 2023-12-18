@@ -17,5 +17,8 @@ object NetworkUtils {
         return activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
                 activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
     }
+
+
+
 }
 

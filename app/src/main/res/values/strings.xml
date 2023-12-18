@@ -7,5 +7,6 @@
     <string name="loading_text">Yükleniyor...</string>
     <string name="there_isn_internet_connection">Internet Bağlantınız Yok</string>
     <string name="try_connect">Tekrar Bağlan</string>
-    <string name="role">Rolü</string>
+    <string name="role"><u>Rolü</u></string>
+    <string name="description">Açıklaması:</string>
 </resources>
