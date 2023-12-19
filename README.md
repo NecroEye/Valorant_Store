@@ -19,7 +19,7 @@
 For animation : Lottie used
 <br>
 
-## :pencil2: Dependency
+## Dependency
 ```
       //UI
     implementation("com.github.bumptech.glide:glide:4.16.0")
@@ -89,7 +89,7 @@ plugins {
 ```
 
 <!-- Manifest File -->
-## :exclamation: Manifest File
+## Manifest File
 ```
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
