@@ -32,7 +32,7 @@ class WeaponryDetailFragment : Fragment() {
 
         receivedData.let {
 
-            binding.testText1.text = receivedData?.displayName ?: "Boş"
+            binding.testText1.text = receivedData?.weaponStats?.magSize.toString() ?: "Boş"
 
         }
 

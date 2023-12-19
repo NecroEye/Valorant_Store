@@ -9,4 +9,8 @@
     <string name="try_connect">Tekrar Bağlan</string>
     <string name="role"><u>Rolü</u></string>
     <string name="description">Açıklaması:</string>
+    <string name="agents">Ajanlar</string>
+    <string name="weapons">Silahlar</string>
+    <string name="abilities">Yetenekler:</string>
+    <string name="agent_image">Agent Image</string>
 </resources>

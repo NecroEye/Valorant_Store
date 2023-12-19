@@ -15,7 +15,6 @@ data class WeaponryModel(
 ) {
 
 
-
     data class WeaponryData(
         @SerializedName("displayName")
         @Expose
@@ -32,6 +31,9 @@ data class WeaponryModel(
         @SerializedName("shopData")
         @Expose
         val shopData: ShopData?,
+        @SerializedName("weaponStats")
+        @Expose
+        val weaponStats: WeaponStats?,
 
         ) : Parcelable {
 
@@ -41,8 +43,30 @@ data class WeaponryModel(
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            TODO("shopData")
+            TODO("shopData"),
+            TODO("weaponStats")
         )
+
+        data class WeaponStats(
+            @SerializedName("fireRate")
+            @Expose
+            val fireRate: Double?,
+            @SerializedName("magazineSize")
+            @Expose
+            val magSize: Int?,
+            @SerializedName("runSpeedMultiplier")
+            @Expose
+            val runSpeedMultiplier: Double?,
+            @SerializedName("equipTimeSeconds")
+            @Expose
+            val equipTimeSec: Double?,
+            @SerializedName("firstBulletAccuracy")
+            @Expose
+            val firstBulletAcc: Double?,
+            @SerializedName("shotgunPelletCount")
+            @Expose
+            val shotgunPelletCount: Int?,
+        ) {}
 
         data class ShopData(
             @SerializedName("cost")
@@ -135,10 +159,7 @@ data class WeaponryModel(
             }
         }
 
-
     }
-
-
 }
 
 

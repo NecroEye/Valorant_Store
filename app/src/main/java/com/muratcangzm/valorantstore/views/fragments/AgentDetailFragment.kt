@@ -1,6 +1,5 @@
 package com.muratcangzm.valorantstore.views.fragments
 
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,11 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.target.CustomTarget
 import com.muratcangzm.valorantstore.R
 import com.muratcangzm.valorantstore.databinding.AgentDetailFragmentLayoutBinding
 import com.muratcangzm.valorantstore.model.remote.AgentModel
+import com.muratcangzm.valorantstore.views.adapters.AbilityAdapter
 
 class AgentDetailFragment : Fragment() {
 
@@ -54,15 +52,16 @@ class AgentDetailFragment : Fragment() {
             .into(binding.roleIcon)
 
 
-                binding.role.text = receivedData?.role?.displayName ?: "Boş"
+        binding.abilityRecycler.adapter = AbilityAdapter(receivedData!!)
+
+        binding.role.text = receivedData.role?.displayName ?: "Boş"
 
 
 
-        binding.expandTextView.text = receivedData?.description
+        binding.expandTextView.text = receivedData.description ?: "Boş"
 
 
     }
-
 
 
 }

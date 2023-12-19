@@ -7,6 +7,19 @@
     android:orientation="vertical">
 
 
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_sea"
+        android:padding="7dp"
+        android:text="@string/weapons"
+        android:gravity="center"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/light_grey"
+        android:layout_marginBottom="25dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/weaponryRecycler"
         android:layout_width="match_parent"
