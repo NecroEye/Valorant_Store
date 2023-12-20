@@ -1,34 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/dark_sea2"
+    android:orientation="vertical">
 
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp">
-
-
-
-
-
-
-    </RelativeLayout>
-
-
-    <com.google.android.material.textview.MaterialTextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Weaponry Detail Fragment"
-        android:textColor="@color/black"
-        android:id="@+id/testText1"
-        android:textStyle="bold"
-        android:textSize="23sp"
-        android:gravity="center"
-        android:layout_marginTop="150dp"/>
+        android:orientation="vertical">
 
 
-</LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+
+            <ImageView
+                android:id="@+id/weaponBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:scaleType="fitCenter" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/weapon_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="172dp"
+                android:gravity="center"
+                android:padding="2dp"
+                android:text="@string/empty"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:elevation="10dp"
+            app:cardBackgroundColor="@color/dark_sea"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weapon_informations"
+                    android:textColor="@color/white"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    android:layout_margin="8.5dp"/>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fire_rate"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:padding="1dp"
+                    android:id="@+id/fireR"
+                    android:textColor="@color/white"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/fireR"
+                        android:text="@string/empty"
+                        android:id="@+id/fire_rate"
+                        android:layout_marginTop="5dp"
+                        android:textSize="16sp"
+                        android:layout_marginStart="3dp"
+                        android:textColor="@color/light_grey"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fire_rate"
+                        android:textStyle="bold"
+                        android:padding="1dp"
+                        android:layout_toEndOf="@id/fire_rate"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginStart="50dp"
+                        android:id="@+id/MagSize"
+                        android:textColor="@color/white"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/MagSize"
+                        android:text="@string/empty"
+                        android:layout_marginStart="5dp"
+                        android:id="@+id/mag_size"
+                        android:layout_marginTop="4dp"
+                        android:textSize="16sp"
+                        android:textColor="@color/light_grey"/>
+
+
+                </RelativeLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</ScrollView>

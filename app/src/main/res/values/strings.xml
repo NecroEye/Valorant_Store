@@ -13,4 +13,6 @@
     <string name="weapons">Silahlar</string>
     <string name="abilities">Yetenekler:</string>
     <string name="agent_image">Agent Image</string>
+    <string name="weapon_informations">Silah Özellikleri:</string>
+    <string name="fire_rate">Azami Atış Hızı:</string>
 </resources>
