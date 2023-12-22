@@ -16,6 +16,7 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textview.MaterialTextView
 import com.muratcangzm.valorantstore.model.remote.CurrencyModel
+import com.muratcangzm.valorantstore.model.remote.WeaponSkinModel
 import com.muratcangzm.valorantstore.model.remote.WeaponryModel
 import com.muratcangzm.valorantstore.views.fragments.WeaponryFragmentDirections
 import timber.log.Timber
@@ -26,6 +27,7 @@ constructor(
     private val context: Context,
     private val weaponryModel: WeaponryModel,
     private val currencyModel: CurrencyModel
+    ,private val skinModel: WeaponSkinModel
 ) : RecyclerView.Adapter<WeaponryAdapter.WeaponHolder>() {
 
 
@@ -76,9 +78,8 @@ constructor(
 
         weaponCardView.setOnClickListener {
 
-
             val action = WeaponryFragmentDirections.actionWeaponryFragmentToWeaponryDetailFragment(
-                weaponryModel.weaponry!![position]
+                weaponryModel.weaponry!![position], skinModel
             )
 
             Navigation.findNavController(it).navigate(action)

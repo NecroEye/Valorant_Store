@@ -52,5 +52,8 @@
         <argument
             android:name="weaponData"
             app:argType="com.muratcangzm.valorantstore.model.remote.WeaponryModel$WeaponryData" />
+        <argument
+            android:name="skinData"
+            app:argType="com.muratcangzm.valorantstore.model.remote.WeaponSkinModel" />
     </fragment>
 </navigation>

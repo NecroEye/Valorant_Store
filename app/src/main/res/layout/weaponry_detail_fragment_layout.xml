@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_sea2"
@@ -16,26 +17,15 @@
             android:layout_width="match_parent"
             android:layout_height="200dp">
 
-
-            <ImageView
-                android:id="@+id/weaponBanner"
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/image_slider"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:scaleType="fitCenter" />
+                android:layout_height="200dp"
+                app:iss_auto_cycle="true"
+                app:iss_delay="1555"
+                app:iss_period="1000"
+                app:iss_text_align="CENTER" />
 
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/weapon_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="172dp"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="@string/empty"
-                android:textSize="19sp"
-                android:textStyle="bold" />
         </RelativeLayout>
 
 
@@ -57,62 +47,157 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="8.5dp"
                     android:text="@string/weapon_informations"
                     android:textColor="@color/white"
                     android:textSize="21sp"
-                    android:textStyle="bold"
-                    android:layout_margin="8.5dp"/>
+                    android:textStyle="bold" />
 
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/fire_rate"
-                    android:layout_margin="5dp"
-                    android:textStyle="bold"
-                    android:padding="1dp"
-                    android:id="@+id/fireR"
-                    android:textColor="@color/white"/>
-
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/fireR"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:padding="1dp"
+                        android:text="@string/fire_rate"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/fireRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="10dp"
                         android:layout_toEndOf="@id/fireR"
                         android:text="@string/empty"
-                        android:id="@+id/fire_rate"
-                        android:layout_marginTop="5dp"
-                        android:textSize="16sp"
-                        android:layout_marginStart="3dp"
-                        android:textColor="@color/light_grey"/>
+                        android:textColor="@color/light_grey"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/fire_rate"
-                        android:textStyle="bold"
-                        android:padding="1dp"
-                        android:layout_toEndOf="@id/fire_rate"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginStart="50dp"
                         android:id="@+id/MagSize"
-                        android:textColor="@color/white"/>
-
-                    <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:layout_toEndOf="@id/MagSize"
-                        android:text="@string/empty"
-                        android:layout_marginStart="5dp"
-                        android:id="@+id/mag_size"
+                        android:layout_marginStart="65dp"
                         android:layout_marginTop="4dp"
-                        android:textSize="16sp"
-                        android:textColor="@color/light_grey"/>
+                        android:layout_toEndOf="@id/fireRate"
+                        android:padding="1dp"
+                        android:text="@string/magSize"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/magSiz"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_toEndOf="@id/MagSize"
+                        android:paddingStart="2dp"
+                        android:text="@string/empty"
+                        android:textColor="@color/light_grey"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:ignore="RtlSymmetry" />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/runSpeedMultiplier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/fireR"
+                        android:layout_marginStart="5dp"
+                        android:padding="1dp"
+                        android:text="@string/runSpeedMultiplier"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/runSpeedM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/fireRate"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_toEndOf="@id/fireR"
+                        android:paddingStart="5dp"
+                        android:text="@string/empty"
+                        android:textColor="@color/light_grey"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:ignore="RtlSymmetry" />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/equipTimeSec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/magSiz"
+                        android:layout_marginStart="65dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_toEndOf="@id/fireRate"
+                        android:padding="1dp"
+                        android:text="@string/equipTimeSec"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/equipTimeSecText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/magSiz"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_toEndOf="@id/MagSize"
+                        android:paddingStart="2dp"
+                        android:text="@string/empty"
+                        android:textColor="@color/light_grey"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:ignore="RtlSymmetry" />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/firstBulletAcc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/runSpeedMultiplier"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:padding="1dp"
+                        android:text="@string/firstBulletAccuracy"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/firstBulletAc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/runSpeedMultiplier"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_toEndOf="@id/fireR"
+                        android:paddingStart="35dp"
+                        android:text="@string/empty"
+                        android:textColor="@color/light_grey"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:ignore="RtlSymmetry" />
+
 
 
                 </RelativeLayout>

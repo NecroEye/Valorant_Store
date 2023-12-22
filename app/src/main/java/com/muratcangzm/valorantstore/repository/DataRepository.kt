@@ -25,8 +25,9 @@ constructor(val api: ValorantAPI) {
             val weaponryDeferred = async { api.getWeaponry() }
             val currencyDeferred = async { api.getCurrency() }
             val agentDeferred = async { api.getAgent() }
+            val skinDeferred = async { api.getSkins() }
 
-            val results = awaitAll(eventDeferred, weaponryDeferred, currencyDeferred, agentDeferred)
+            val results = awaitAll(eventDeferred, weaponryDeferred, currencyDeferred, agentDeferred, skinDeferred)
 
 
             return@withContext results

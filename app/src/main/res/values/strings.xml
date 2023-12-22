@@ -15,4 +15,8 @@
     <string name="agent_image">Agent Image</string>
     <string name="weapon_informations">Silah Özellikleri:</string>
     <string name="fire_rate">Azami Atış Hızı:</string>
+    <string name="runSpeedMultiplier">Atış Hızı Çarpanı:</string>
+    <string name="magSize">Cephane Sayısı:</string>
+    <string name="equipTimeSec">Kuşanma Süresi:</string>
+    <string name="firstBulletAccuracy">İlk Mermi Hassasiyeti:</string>
 </resources>

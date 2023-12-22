@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.muratcangzm.valorantstore.databinding.WeaponryFragmentLayoutBinding
 import com.muratcangzm.valorantstore.model.remote.CurrencyModel
+import com.muratcangzm.valorantstore.model.remote.WeaponSkinModel
 import com.muratcangzm.valorantstore.model.remote.WeaponryModel
 import com.muratcangzm.valorantstore.viewmodels.DataViewModel
 import com.muratcangzm.valorantstore.views.adapters.WeaponryAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class WeaponryFragment : Fragment() {
@@ -21,6 +23,7 @@ class WeaponryFragment : Fragment() {
     private val viewModel: DataViewModel by viewModels()
     private lateinit var weaponryModel: WeaponryModel
     private lateinit var currencyModel: CurrencyModel
+    private lateinit var weaponSkinModel: WeaponSkinModel
 
 
     override fun onCreateView(
@@ -42,9 +45,12 @@ class WeaponryFragment : Fragment() {
 
             weaponryModel = it[1] as WeaponryModel
             currencyModel = it[2] as CurrencyModel
+            weaponSkinModel = it[4] as WeaponSkinModel
 
+            Timber.tag("Real Kostum").d("${weaponSkinModel.skinData?.size}")
 
-            binding.weaponryRecycler.adapter = WeaponryAdapter(requireContext(), weaponryModel, currencyModel)
+            binding.weaponryRecycler.adapter = WeaponryAdapter(requireContext(), weaponryModel, currencyModel, weaponSkinModel)
+
 
 
         }

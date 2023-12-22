@@ -78,6 +78,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.airbnb.android:lottie:$lottieVersion")
     implementation("com.ms-square:expandableTextView:0.1.4")
+    implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
 
 
     //Retrofit

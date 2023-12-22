@@ -7,5 +7,6 @@ object Constans {
     const val WEAPONRY = "weapons"
     const val CURRENCY = "currencies"
     const val AGENTS = "agents"
+    const val SKINS = "weapons/skins"
 
 }
