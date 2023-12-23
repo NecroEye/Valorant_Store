@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -23,6 +24,7 @@ class AgentFragment : Fragment() {
     private lateinit var binding: AgentFragmentLayoutBinding
     private val viewModel: DataViewModel by viewModels()
     private lateinit var agentModel: AgentModel
+    private lateinit var agentAdapter: AgentAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,13 +45,52 @@ class AgentFragment : Fragment() {
 
             agentModel = it[3] as AgentModel
 
-            binding.agentRecycler.adapter = AgentAdapter(requireContext(), agentModel)
+            agentAdapter = AgentAdapter(requireContext(), agentModel)
+            binding.agentRecycler.adapter = agentAdapter
 
 
+            binding.agentSearch.setOnQueryTextListener(object :
+                androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+
+                    filteredText(newText!!)
+                    return true
+
+                }
+
+
+            })
 
         }
 
 
     }
+
+    private fun filteredText(text: String) {
+        val filteredList = mutableListOf<AgentModel.AgentData>()
+
+        if (text.isEmpty()) {
+            agentAdapter.setFilteredList(agentModel.agentData!!)
+        } else {
+            for (filtered in agentModel.agentData!!) {
+                if (filtered.displayName!!.lowercase().contains(text.lowercase())) {
+                    filteredList.add(filtered)
+                }
+            }
+
+            if (filteredList.isEmpty()) {
+                agentAdapter.setFilteredList(agentModel.agentData!!)
+            } else {
+                agentAdapter.setFilteredList(filteredList)
+            }
+        }
+
+
+    }
+
 
 }

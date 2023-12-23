@@ -1,5 +1,6 @@
 package com.muratcangzm.valorantstore.views.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.view.LayoutInflater
@@ -22,6 +23,20 @@ constructor(
 ) : RecyclerView.Adapter<AgentAdapter.AgentHolder>() {
 
 
+    private var dummyAgentModel = mutableListOf<AgentModel.AgentData>()
+
+    init {
+        this.dummyAgentModel.addAll(agentModel.agentData!!)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public fun setFilteredList(agentModel: List<AgentModel.AgentData>){
+
+        dummyAgentModel = agentModel.toMutableList()
+        notifyDataSetChanged()
+
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AgentHolder {
 
         val view =
@@ -31,7 +46,7 @@ constructor(
     }
 
     override fun getItemCount(): Int {
-        return agentModel.agentData?.size ?: 0
+        return dummyAgentModel.size ?: 0
     }
 
     override fun onBindViewHolder(holder: AgentHolder, position: Int) {
@@ -41,9 +56,9 @@ constructor(
         val agentNameText: MaterialTextView = holder.itemView.findViewById(R.id.agentNameText)
         val cardView: MaterialCardView = holder.itemView.findViewById(R.id.agentCardView)
 
-        agentModel.let { agent ->
+        dummyAgentModel.let { agent ->
 
-            val iconUri = Uri.parse(agent.agentData?.get(position)?.displayIcon)
+            val iconUri = Uri.parse(dummyAgentModel[position].displayIcon)
 
             Glide.with(context)
                 .load(iconUri)
@@ -51,13 +66,13 @@ constructor(
                 .error(R.drawable.not_found)
                 .into(agentIcon)
 
-            agentNameText.text = agent.agentData?.get(position)?.displayName ?: "Boş"
+            agentNameText.text = dummyAgentModel[position].displayName ?: "Boş"
 
 
             cardView.setOnClickListener {
 
                 val action =
-                    AgentFragmentDirections.actionAgentFragmentToAgentDetailFragment(agent.agentData!![position])
+                    AgentFragmentDirections.actionAgentFragmentToAgentDetailFragment(dummyAgentModel[position])
 
                 Navigation
                     .findNavController(it)

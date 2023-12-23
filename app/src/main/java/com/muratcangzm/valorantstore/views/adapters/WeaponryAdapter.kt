@@ -30,6 +30,19 @@ constructor(
     ,private val skinModel: WeaponSkinModel
 ) : RecyclerView.Adapter<WeaponryAdapter.WeaponHolder>() {
 
+   private var dummyWeaponryModel = mutableListOf<WeaponryModel.WeaponryData>()
+
+    init {
+        dummyWeaponryModel.addAll(weaponryModel.weaponry!!)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public fun setFilteredList(weaponModel: List<WeaponryModel.WeaponryData>) {
+        this.dummyWeaponryModel = weaponModel.toMutableList()
+        notifyDataSetChanged()
+
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeaponHolder {
 
@@ -40,7 +53,7 @@ constructor(
     }
 
     override fun getItemCount(): Int {
-        return weaponryModel.weaponry?.size ?: 0
+        return dummyWeaponryModel.size ?: 0
     }
 
     @SuppressLint("ResourceAsColor")
@@ -55,7 +68,7 @@ constructor(
 
         weaponPriceIcon.setBackgroundColor(R.color.black)
 
-        val weaponUri = Uri.parse(weaponryModel.weaponry?.get(position)?.displayIcon)
+        val weaponUri = Uri.parse(dummyWeaponryModel[position].displayIcon)
         val currencyIconUri = Uri.parse(currencyModel.currency?.get(0)?.largeIcon)
 
         Timber.tag("Resim").d("Resim: $currencyIconUri")
@@ -72,14 +85,14 @@ constructor(
             .placeholder(R.drawable.not_found)
             .into(weaponPriceIcon)
 
-        weaponName.text = weaponryModel.weaponry?.get(position)?.displayName
-        weaponPrice.text = weaponryModel.weaponry?.get(position)?.shopData?.cost.toString()
+        weaponName.text = dummyWeaponryModel[position].displayName
+        weaponPrice.text = dummyWeaponryModel[position].shopData?.cost.toString()
 
 
         weaponCardView.setOnClickListener {
 
             val action = WeaponryFragmentDirections.actionWeaponryFragmentToWeaponryDetailFragment(
-                weaponryModel.weaponry!![position], skinModel
+                dummyWeaponryModel[position], skinModel
             )
 
             Navigation.findNavController(it).navigate(action)
@@ -88,7 +101,7 @@ constructor(
             Snackbar
                 .make(
                     it,
-                    "Tıklandı: ${weaponryModel.weaponry?.get(position)?.displayName}",
+                    "Tıklandı: ${dummyWeaponryModel[position].displayName}",
                     Snackbar.LENGTH_SHORT
                 )
                 .show()
