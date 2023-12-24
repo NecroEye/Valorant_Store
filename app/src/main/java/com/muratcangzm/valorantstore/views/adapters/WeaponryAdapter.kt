@@ -20,6 +20,7 @@ import com.muratcangzm.valorantstore.model.remote.WeaponSkinModel
 import com.muratcangzm.valorantstore.model.remote.WeaponryModel
 import com.muratcangzm.valorantstore.views.fragments.WeaponryFragmentDirections
 import timber.log.Timber
+import kotlin.jvm.Throws
 
 
 class WeaponryAdapter
@@ -52,6 +53,7 @@ constructor(
         return WeaponHolder(view)
     }
 
+    @Throws(ArrayIndexOutOfBoundsException::class)
     override fun getItemCount(): Int {
         return dummyWeaponryModel.size ?: 0
     }
@@ -85,8 +87,8 @@ constructor(
             .placeholder(R.drawable.not_found)
             .into(weaponPriceIcon)
 
-        weaponName.text = dummyWeaponryModel[position].displayName
-        weaponPrice.text = dummyWeaponryModel[position].shopData?.cost.toString()
+        weaponName.text = dummyWeaponryModel[position].displayName ?: "Boş"
+        weaponPrice.text = dummyWeaponryModel[position].shopData?.cost.toString() ?: "0"
 
 
         weaponCardView.setOnClickListener {

@@ -12,6 +12,7 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.muratcangzm.valorantstore.databinding.WeaponryDetailFragmentLayoutBinding
 import com.muratcangzm.valorantstore.model.remote.WeaponSkinModel
 import com.muratcangzm.valorantstore.model.remote.WeaponryModel
+import com.muratcangzm.valorantstore.views.adapters.ChromaAdapter
 import timber.log.Timber
 
 class WeaponryDetailFragment : Fragment() {
@@ -37,22 +38,20 @@ class WeaponryDetailFragment : Fragment() {
 
         val receivedData =
             requireArguments().getParcelable<WeaponryModel.WeaponryData>("weaponData")
-        val receivedSkin = requireArguments().getParcelable<WeaponSkinModel>("skinData")
+        val receivedSkin =
+            requireArguments().getParcelable<WeaponSkinModel>("skinData")
 
-        Timber.tag("Data Kostum").d("${receivedSkin?.skinData?.size}")
+
+        binding.chromaRecycler.adapter = ChromaAdapter(requireContext() ,receivedSkin!!, receivedData!!)
+
         receivedSkin.let {
-
-            for (skin in receivedSkin!!.skinData!!) {
-
-                if (skin.displayName!!.contains(receivedData!!.displayName!!))
-                    Timber.tag("Kostum Var").d("${skin.displayIcon}")
-
-            }
 
             for (skin in receivedSkin.skinData!!) {
 
-                if (skin.displayName!!.contains(receivedData!!.displayName!!))
-                    if (skin.displayName != null && skin.displayIcon != null)
+                if (skin.displayName!!.contains(receivedData.displayName!!))
+                    if (skin.displayName != null && skin.displayIcon != null
+                        && !skin.displayName.startsWith("STANDART")
+                    )
                         imageSlider.add(SlideModel(skin.displayIcon, skin.displayName))
 
             }
@@ -65,14 +64,14 @@ class WeaponryDetailFragment : Fragment() {
         receivedData.let {
             binding.apply {
 
-                this.fireRate.text = receivedData?.weaponStats?.fireRate.toString() ?: "Boş"
+                this.fireRate.text = receivedData.weaponStats?.fireRate.toString() ?: "Boş"
                 this.runSpeedM.text =
-                    receivedData?.weaponStats?.runSpeedMultiplier.toString() ?: "Boş"
-                this.magSiz.text = receivedData?.weaponStats?.magSize.toString() ?: "Boş"
+                    receivedData.weaponStats?.runSpeedMultiplier.toString() ?: "Boş"
+                this.magSiz.text = receivedData.weaponStats?.magSize.toString() ?: "Boş"
                 this.equipTimeSecText.text =
-                    receivedData?.weaponStats?.equipTimeSec.toString() ?: "Boş"
+                    receivedData.weaponStats?.equipTimeSec.toString() ?: "Boş"
                 this.firstBulletAc.text =
-                    receivedData?.weaponStats?.firstBulletAcc.toString() ?: "Boş"
+                    receivedData.weaponStats?.firstBulletAcc.toString() ?: "Boş"
 
             }
         }

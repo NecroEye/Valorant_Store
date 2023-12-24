@@ -32,7 +32,10 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:elevation="10dp"
             app:cardBackgroundColor="@color/dark_sea"
             app:cardCornerRadius="10dp"
@@ -199,9 +202,49 @@
                         tools:ignore="RtlSymmetry" />
 
 
-
                 </RelativeLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="10dp"
+            app:cardBackgroundColor="@color/dark_sea"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8.5dp"
+                    android:text="@string/chromas"
+                    android:textColor="@color/white"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/chromaRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:padding="3dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
     </LinearLayout>
 </ScrollView>

@@ -15,6 +15,7 @@ import com.google.android.material.textview.MaterialTextView
 import com.muratcangzm.valorantstore.R
 import com.muratcangzm.valorantstore.model.remote.AgentModel
 import com.muratcangzm.valorantstore.views.fragments.AgentFragmentDirections
+import kotlin.jvm.Throws
 
 class AgentAdapter
 constructor(
@@ -45,6 +46,7 @@ constructor(
         return AgentHolder(view)
     }
 
+    @Throws(ArrayIndexOutOfBoundsException::class)
     override fun getItemCount(): Int {
         return dummyAgentModel.size ?: 0
     }

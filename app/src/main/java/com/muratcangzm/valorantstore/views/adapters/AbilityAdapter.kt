@@ -10,6 +10,7 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 import com.muratcangzm.valorantstore.R
 import com.muratcangzm.valorantstore.model.remote.AgentModel
+import kotlin.jvm.Throws
 
 class AbilityAdapter(private val abilities: AgentModel.AgentData) : RecyclerView.Adapter<AbilityAdapter.AbilityHolder>() {
 
@@ -22,6 +23,7 @@ class AbilityAdapter(private val abilities: AgentModel.AgentData) : RecyclerView
         return AbilityHolder(view)
     }
 
+    @Throws(ArrayIndexOutOfBoundsException::class)
     override fun getItemCount(): Int {
 
         return abilities.abilities?.size ?: 0

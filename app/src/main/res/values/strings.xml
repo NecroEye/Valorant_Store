@@ -19,4 +19,6 @@
     <string name="magSize">Cephane Sayısı:</string>
     <string name="equipTimeSec">Kuşanma Süresi:</string>
     <string name="firstBulletAccuracy">İlk Mermi Hassasiyeti:</string>
+    <string name="chromas">Chromalar:</string>
+    <string name="chroma_image">Chroma Resmi</string>
 </resources>

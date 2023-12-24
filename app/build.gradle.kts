@@ -105,9 +105,14 @@ dependencies {
     //Timber - Logger
     implementation("com.jakewharton.timber:timber:5.0.1")
 
+
     //Room
     implementation ("androidx.room:room-runtime:$room_version")
     kapt ("androidx.room:room-compiler:$room_version")
+
+
+    //Memory Leak Detection
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.12")
 
 
     //Testing
