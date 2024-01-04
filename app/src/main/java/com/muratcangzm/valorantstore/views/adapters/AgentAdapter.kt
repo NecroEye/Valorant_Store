@@ -13,6 +13,8 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 import com.muratcangzm.valorantstore.R
+import com.muratcangzm.valorantstore.databinding.AgentAdapterLayoutBinding
+import com.muratcangzm.valorantstore.databinding.AgentFragmentLayoutBinding
 import com.muratcangzm.valorantstore.model.remote.AgentModel
 import com.muratcangzm.valorantstore.views.fragments.AgentFragmentDirections
 import kotlin.jvm.Throws
@@ -25,13 +27,14 @@ constructor(
 
 
     private var dummyAgentModel = mutableListOf<AgentModel.AgentData>()
+    private lateinit var binding: AgentAdapterLayoutBinding
 
     init {
         this.dummyAgentModel.addAll(agentModel.agentData!!)
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public fun setFilteredList(agentModel: List<AgentModel.AgentData>){
+    public fun setFilteredList(agentModel: List<AgentModel.AgentData>) {
 
         dummyAgentModel = agentModel.toMutableList()
         notifyDataSetChanged()
@@ -40,10 +43,10 @@ constructor(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AgentHolder {
 
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.agent_adapter_layout, parent, false)
+        binding =
+            AgentAdapterLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return AgentHolder(view)
+        return AgentHolder()
     }
 
     @Throws(ArrayIndexOutOfBoundsException::class)
@@ -51,34 +54,48 @@ constructor(
         return dummyAgentModel.size ?: 0
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     override fun onBindViewHolder(holder: AgentHolder, position: Int) {
-
-
-        val agentIcon: ShapeableImageView = holder.itemView.findViewById(R.id.agentSmallIcon)
-        val agentNameText: MaterialTextView = holder.itemView.findViewById(R.id.agentNameText)
-        val cardView: MaterialCardView = holder.itemView.findViewById(R.id.agentCardView)
 
         dummyAgentModel.let { agent ->
 
-            val iconUri = Uri.parse(dummyAgentModel[position].displayIcon)
+            holder.setData(dummyAgentModel[position])
 
-            Glide.with(context)
-                .load(iconUri)
-                .placeholder(R.drawable.not_found)
-                .error(R.drawable.not_found)
-                .into(agentIcon)
+        }
 
-            agentNameText.text = dummyAgentModel[position].displayName ?: "Boş"
+    }
+
+    inner class
+    AgentHolder : RecyclerView.ViewHolder(binding.root) {
+
+        fun setData(agentModel: AgentModel.AgentData) {
+
+            binding.apply {
+
+                agentNameText.text = agentModel.displayName
+
+                val iconUri = Uri.parse(agentModel.displayIcon)
+
+                Glide.with(context)
+                    .load(iconUri)
+                    .placeholder(R.drawable.not_found)
+                    .error(R.drawable.not_found)
+                    .into(agentSmallIcon)
 
 
-            cardView.setOnClickListener {
+                agentCardView.setOnClickListener {
 
-                val action =
-                    AgentFragmentDirections.actionAgentFragmentToAgentDetailFragment(dummyAgentModel[position])
+                    val action =
+                        AgentFragmentDirections.actionAgentFragmentToAgentDetailFragment(agentModel)
 
-                Navigation
-                    .findNavController(it)
-                    .navigate(action)
+                    Navigation
+                        .findNavController(it)
+                        .navigate(action)
+
+                }
 
             }
 
@@ -86,10 +103,6 @@ constructor(
 
 
     }
-
-
-    inner class
-    AgentHolder(item: View) : RecyclerView.ViewHolder(item)
 
 
 }

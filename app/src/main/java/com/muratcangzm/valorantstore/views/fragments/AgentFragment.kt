@@ -61,13 +61,9 @@ class AgentFragment : Fragment() {
                     return true
 
                 }
-
-
             })
 
         }
-
-
     }
 
     private fun filteredText(text: String) {

@@ -15,6 +15,7 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textview.MaterialTextView
+import com.muratcangzm.valorantstore.databinding.WeaponryAdapterLayoutBinding
 import com.muratcangzm.valorantstore.model.remote.CurrencyModel
 import com.muratcangzm.valorantstore.model.remote.WeaponSkinModel
 import com.muratcangzm.valorantstore.model.remote.WeaponryModel
@@ -27,11 +28,11 @@ class WeaponryAdapter
 constructor(
     private val context: Context,
     private val weaponryModel: WeaponryModel,
-    private val currencyModel: CurrencyModel
-    ,private val skinModel: WeaponSkinModel
+    private val currencyModel: CurrencyModel, private val skinModel: WeaponSkinModel
 ) : RecyclerView.Adapter<WeaponryAdapter.WeaponHolder>() {
 
-   private var dummyWeaponryModel = mutableListOf<WeaponryModel.WeaponryData>()
+    private var dummyWeaponryModel = mutableListOf<WeaponryModel.WeaponryData>()
+    private lateinit var binding: WeaponryAdapterLayoutBinding
 
     init {
         dummyWeaponryModel.addAll(weaponryModel.weaponry!!)
@@ -47,10 +48,10 @@ constructor(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeaponHolder {
 
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.weaponry_adapter_layout, parent, false)
+        binding =
+            WeaponryAdapterLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return WeaponHolder(view)
+        return WeaponHolder()
     }
 
     @Throws(ArrayIndexOutOfBoundsException::class)
@@ -58,68 +59,73 @@ constructor(
         return dummyWeaponryModel.size ?: 0
     }
 
-    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: WeaponHolder, position: Int) {
 
+        dummyWeaponryModel.let {
 
-        val weaponImage: ImageView = holder.itemView.findViewById(R.id.weaponImage)
-        val weaponName: MaterialTextView = holder.itemView.findViewById(R.id.weaponryName)
-        val weaponPrice: MaterialTextView = holder.itemView.findViewById(R.id.weaponryPrice)
-        val weaponPriceIcon: ShapeableImageView = holder.itemView.findViewById(R.id.currencyIcon)
-        val weaponCardView: MaterialCardView = holder.itemView.findViewById(R.id.weaponryCardView)
+            holder.setData(dummyWeaponryModel[position], currencyModel)
 
-        weaponPriceIcon.setBackgroundColor(R.color.black)
+        }
 
-        val weaponUri = Uri.parse(dummyWeaponryModel[position].displayIcon)
-        val currencyIconUri = Uri.parse(currencyModel.currency?.get(0)?.largeIcon)
+    }
 
-        Timber.tag("Resim").d("Resim: $currencyIconUri")
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
 
-        Glide.with(context)
-            .load(weaponUri)
-            .error(R.drawable.not_found)
-            .placeholder(R.drawable.not_found)
-            .into(weaponImage)
+    inner class WeaponHolder :
+        RecyclerView.ViewHolder(
+            binding.root
+        ) {
 
-        Glide.with(context)
-            .load(currencyIconUri)
-            .error(R.drawable.not_found)
-            .placeholder(R.drawable.not_found)
-            .into(weaponPriceIcon)
+        @SuppressLint("ResourceAsColor")
+        fun setData(weaponModel: WeaponryModel.WeaponryData, currencyModel: CurrencyModel) {
 
-        weaponName.text = dummyWeaponryModel[position].displayName ?: "Boş"
-        weaponPrice.text = dummyWeaponryModel[position].shopData?.cost.toString() ?: "0"
+            binding.apply {
 
+                if (weaponModel.shopData?.cost == null)
+                    weaponryPrice.text = "Ücretsiz"
 
-        weaponCardView.setOnClickListener {
+                else
+                    weaponryPrice.text = weaponModel.shopData.cost.toString()
 
-            val action = WeaponryFragmentDirections.actionWeaponryFragmentToWeaponryDetailFragment(
-                dummyWeaponryModel[position], skinModel
-            )
+                weaponryName.text = weaponModel.displayName ?: "0"
+                currencyIcon.setBackgroundColor(R.color.black)
 
-            Navigation.findNavController(it).navigate(action)
+                val weaponUri = Uri.parse(weaponModel.displayIcon)
+                val currencyIconUri = Uri.parse(currencyModel.currency?.get(0)?.largeIcon)
+
+                Timber.tag("Resim").d("Resim: $currencyIconUri")
 
 
-            Snackbar
-                .make(
-                    it,
-                    "Tıklandı: ${dummyWeaponryModel[position].displayName}",
-                    Snackbar.LENGTH_SHORT
-                )
-                .show()
+                Glide.with(context)
+                    .load(weaponUri)
+                    .error(R.drawable.not_found)
+                    .placeholder(R.drawable.not_found)
+                    .into(weaponImage)
 
+                Glide.with(context)
+                    .load(currencyIconUri)
+                    .error(R.drawable.not_found)
+                    .placeholder(R.drawable.not_found)
+                    .into(currencyIcon)
+
+
+                weaponryCardView.setOnClickListener {
+
+                    val action =
+                        WeaponryFragmentDirections.actionWeaponryFragmentToWeaponryDetailFragment(
+                            weaponModel, skinModel
+                        )
+                    Navigation.findNavController(it).navigate(action)
+
+                }
+
+            }
         }
 
 
     }
-
-
-    inner class WeaponHolder(
-        itemView: View
-    ) :
-        RecyclerView.ViewHolder(
-            itemView
-        )
 
 
 }
