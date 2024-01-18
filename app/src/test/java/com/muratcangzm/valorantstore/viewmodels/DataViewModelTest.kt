@@ -36,7 +36,7 @@ class DataViewModelTest {
     fun setup() {
 
         MockitoAnnotations.openMocks(this)
-        viewModel = DataViewModel(repository)
+
 
     }
 
