@@ -36,21 +36,24 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.allModelLiveData.observe(viewLifecycleOwner){
+        observerEventLiveData()
+
+    }
+
+    private fun observerEventLiveData() {
+
+        viewModel.allModelLiveData.observe(viewLifecycleOwner) {
+
 
             eventsModel = it[0] as EventsModel
 
-            for (event in eventsModel.eventData!!){
-
-
+            for (event in eventsModel.eventData!!) {
 
 
             }
 
 
         }
-
-
 
     }
 

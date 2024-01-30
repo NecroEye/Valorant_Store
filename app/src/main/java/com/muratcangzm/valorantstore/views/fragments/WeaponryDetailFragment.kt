@@ -18,8 +18,11 @@ import timber.log.Timber
 class WeaponryDetailFragment : Fragment() {
 
 
-    private lateinit var binding: WeaponryDetailFragmentLayoutBinding
+    private var _binding: WeaponryDetailFragmentLayoutBinding? = null
+    private val binding
+        get() = _binding!!
     private val imageSlider = ArrayList<SlideModel>()
+    private val DEFAULT_TEXT = "Boş"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +30,7 @@ class WeaponryDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = WeaponryDetailFragmentLayoutBinding.inflate(layoutInflater, container, false)
+        _binding = WeaponryDetailFragmentLayoutBinding.inflate(layoutInflater, container, false)
 
         return binding.root
     }
@@ -42,7 +45,8 @@ class WeaponryDetailFragment : Fragment() {
             requireArguments().getParcelable<WeaponSkinModel>("skinData")
 
 
-        binding.chromaRecycler.adapter = ChromaAdapter(requireContext() ,receivedSkin!!, receivedData!!)
+        binding.chromaRecycler.adapter =
+            ChromaAdapter(requireContext(), receivedSkin!!, receivedData!!)
 
         receivedSkin.let {
 
@@ -52,7 +56,7 @@ class WeaponryDetailFragment : Fragment() {
                     if (skin.displayName != null && skin.displayIcon != null
                         && !skin.displayName.startsWith("STANDART")
                     )
-                        imageSlider.add(SlideModel(skin.displayIcon, skin.displayName))
+                imageSlider.add(SlideModel(skin.displayIcon, skin.displayName))
 
             }
 
@@ -62,22 +66,25 @@ class WeaponryDetailFragment : Fragment() {
 
         }
         receivedData.let {
+
             binding.apply {
 
-                this.fireRate.text = receivedData.weaponStats?.fireRate.toString() ?: "Boş"
-                this.runSpeedM.text =
-                    receivedData.weaponStats?.runSpeedMultiplier.toString() ?: "Boş"
-                this.magSiz.text = receivedData.weaponStats?.magSize.toString() ?: "Boş"
-                this.equipTimeSecText.text =
-                    receivedData.weaponStats?.equipTimeSec.toString() ?: "Boş"
-                this.firstBulletAc.text =
-                    receivedData.weaponStats?.firstBulletAcc.toString() ?: "Boş"
+                fireRate.text = receivedData.weaponStats?.fireRate.toString() ?: DEFAULT_TEXT
+                runSpeedM.text = receivedData.weaponStats?.runSpeedMultiplier.toString() ?: DEFAULT_TEXT
+                magSiz.text = receivedData.weaponStats?.magSize.toString() ?: DEFAULT_TEXT
+                equipTimeSecText.text = receivedData.weaponStats?.equipTimeSec.toString() ?: DEFAULT_TEXT
+                firstBulletAc.text = receivedData.weaponStats?.firstBulletAcc.toString() ?: DEFAULT_TEXT
 
             }
+
         }
 
 
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }

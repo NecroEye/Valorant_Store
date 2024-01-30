@@ -7,7 +7,6 @@
     tools:context=".views.MainActivity">
 
 
-
     <include
         android:id="@+id/loading_screen"
         layout="@layout/loading_screen_layout"

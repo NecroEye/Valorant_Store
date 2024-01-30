@@ -23,14 +23,16 @@ import timber.log.Timber
 class MainActivity : AppCompatActivity() {
 
 
-    private lateinit var binding: ActivityMainBinding
+    private var _binding: ActivityMainBinding? = null
+    private val binding
+    get() = _binding!!
     private val viewModel: DataViewModel by viewModels()
     private val networkListener = NetworkChangeListener()
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         if (BuildConfig.DEBUG)
@@ -46,38 +48,35 @@ class MainActivity : AppCompatActivity() {
 
 
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.weaponryDetailFragment || destination.id == R.id.agentDetailFragment ) {
 
+
+            if (destination.id == R.id.weaponryDetailFragment || destination.id == R.id.agentDetailFragment)
                 binding.bottomNavigation.visibility = View.GONE
-
-            }else{
-
+            else
                 binding.bottomNavigation.visibility = View.VISIBLE
 
-            }
+
         }
 
         if (NetworkUtils.isInternetAvailable(this)) {
 
             viewModel.allModelLiveData.observe(this, Observer {
 
-                if(it.isNotEmpty()){
+                if (it.isNotEmpty()) {
 
                     Timber.tag("Vericik").d("${it[0]}")
                     binding.loadingScreen.loadingScreenLayout.visibility = View.GONE
                     binding.bottomNavigation.visibility = View.VISIBLE
                     binding.fragmentContainerView.visibility = View.VISIBLE
 
-                }
-                else{
+                } else {
 
                     binding.fragmentContainerView.visibility = View.GONE
 
                 }
 
             })
-        }
-        else{
+        } else {
 
             binding.bottomNavigation.visibility = View.GONE
             binding.loadingScreen.loadingScreenLayout.visibility = View.VISIBLE
@@ -97,6 +96,13 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         unregisterReceiver(networkListener)
         super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(networkListener)
+        _binding = null
+
     }
 
 }

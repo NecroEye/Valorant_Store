@@ -9,6 +9,7 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
 import com.muratcangzm.valorantstore.databinding.WeaponryFragmentLayoutBinding
 import com.muratcangzm.valorantstore.model.remote.CurrencyModel
 import com.muratcangzm.valorantstore.model.remote.WeaponSkinModel
@@ -22,7 +23,9 @@ import timber.log.Timber
 class WeaponryFragment : Fragment() {
 
 
-    private lateinit var binding: WeaponryFragmentLayoutBinding
+    private var _binding: WeaponryFragmentLayoutBinding? = null
+    private val binding
+        get() = _binding!!
     private val viewModel: DataViewModel by viewModels()
     private lateinit var weaponryModel: WeaponryModel
     private lateinit var currencyModel: CurrencyModel
@@ -36,13 +39,21 @@ class WeaponryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = WeaponryFragmentLayoutBinding.inflate(inflater, container, false)
+        _binding = WeaponryFragmentLayoutBinding.inflate(inflater, container, false)
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        observeWeaponLiveData()
+
+    }
+
+
+    private fun observeWeaponLiveData(){
 
         viewModel.allModelLiveData.observe(viewLifecycleOwner) {
 
@@ -64,16 +75,33 @@ class WeaponryFragment : Fragment() {
                     return false
                 }
                 override fun onQueryTextChange(newText: String?): Boolean {
-                        filteredText(newText!!)
+                    filteredText(newText!!)
                     return true
                 }
             })
 
 
         }
+
+        viewModel.liveDataLoading.observe(viewLifecycleOwner) {
+
+            if (!it)
+                binding.weaponryRecycler.visibility = View.VISIBLE
+            else
+                binding.weaponryRecycler.visibility = View.INVISIBLE
+
+
+        }
+
+        viewModel.liveDataError.observe(viewLifecycleOwner){
+
+            // TODO: Create a special Error message for later
+            if(it)
+            Snackbar.make(requireView(), "Error loading data", Snackbar.LENGTH_SHORT).show()
+
+        }
+
     }
-
-
 
     private fun filteredText(text: String) {
         val filteredList = mutableListOf<WeaponryModel.WeaponryData>()
@@ -93,6 +121,12 @@ class WeaponryFragment : Fragment() {
                 adapter.setFilteredList(filteredList)
             }
         }
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

@@ -21,7 +21,9 @@ import timber.log.Timber
 @AndroidEntryPoint
 class AgentFragment : Fragment() {
 
-    private lateinit var binding: AgentFragmentLayoutBinding
+    private var _binding: AgentFragmentLayoutBinding? = null
+    private val binding
+        get() = _binding!!
     private val viewModel: DataViewModel by viewModels()
     private lateinit var agentModel: AgentModel
     private lateinit var agentAdapter: AgentAdapter
@@ -32,7 +34,7 @@ class AgentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = AgentFragmentLayoutBinding.inflate(inflater, container, false)
+        _binding = AgentFragmentLayoutBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -41,9 +43,18 @@ class AgentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        observeAgentLiveData()
+
+    }
+
+
+    private fun observeAgentLiveData() {
+
         viewModel.allModelLiveData.observe(viewLifecycleOwner) {
 
+
             agentModel = it[3] as AgentModel
+
 
             agentAdapter = AgentAdapter(requireContext(), agentModel)
             binding.agentRecycler.adapter = agentAdapter
@@ -64,6 +75,25 @@ class AgentFragment : Fragment() {
             })
 
         }
+
+        viewModel.liveDataLoading.observe(viewLifecycleOwner) {
+
+            if (!it)
+                binding.agentRecycler.visibility = View.VISIBLE
+            else
+                binding.agentRecycler.visibility = View.INVISIBLE
+
+
+        }
+
+        viewModel.liveDataError.observe(viewLifecycleOwner){
+
+            // TODO: Create a special Error message for later
+            if(it)
+                Snackbar.make(requireView(), "Error loading data", Snackbar.LENGTH_SHORT).show()
+
+        }
+
     }
 
     private fun filteredText(text: String) {
@@ -86,6 +116,11 @@ class AgentFragment : Fragment() {
         }
 
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 
